@@ -15,17 +15,26 @@ useEffect(() => {
 }, []);
 
 const [filterNameInCard, setFilterNameInCard] = useState ("");
+const [filterHouse, setFilterHouse] = useState ("All");
 
-const filteredCharacters = characters.filter((character) =>
+const filteredByName = characters.filter((character) =>
   character.name
     .toLocaleLowerCase()
     .includes(filterNameInCard.toLocaleLowerCase())
 );
 
+const filteredCharacters = filteredByName.filter((character) => {
+  if (filterHouse === "All") {
+    return true;
+  }
+
+  return character.house === filterHouse;
+})
+
 
   return (
     <>
-    <Filters filterNameInCard={filterNameInCard} setFilterNameInCard={setFilterNameInCard} />
+    <Filters filterNameInCard={filterNameInCard} setFilterNameInCard={setFilterNameInCard} filterHouse={filterHouse} setFilterHouse={setFilterHouse} />
     <CharacterList characters={filteredCharacters} />
     </>
     )
