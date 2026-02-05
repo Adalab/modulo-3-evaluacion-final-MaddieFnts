@@ -34,6 +34,11 @@ const filteredCharacters = filteredByName.filter((character) => {
   return character.house === filterHouse;
 })
 
+const allSpecies = characters.map((character) => character.species)
+console.log(allSpecies)
+
+const uniqueSpecies = [...new Set(allSpecies)]
+console.log("Especies únicas:", uniqueSpecies)
 
   return (
   <Routes>
