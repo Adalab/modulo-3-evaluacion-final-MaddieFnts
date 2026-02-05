@@ -4,6 +4,9 @@ import { useEffect } from 'react';
 import getCharacters from './services/api';
 import CharacterList from './components/CharacterList';
 import Filters from './components/Filters';
+import { Routes, Route } from "react-router-dom";
+import CharacterDetails from './components/CharacterDetails';
+
 
 function App() {
 const [characters, setCharacters] = useState([]);
@@ -33,12 +36,23 @@ const filteredCharacters = filteredByName.filter((character) => {
 
 
   return (
-    <>
-    <Filters filterNameInCard={filterNameInCard} setFilterNameInCard={setFilterNameInCard} filterHouse={filterHouse} setFilterHouse={setFilterHouse} />
+  <Routes>
+    <Route
+      path="/"
+      element={
+        <>
+        <Filters filterNameInCard={filterNameInCard} setFilterNameInCard={setFilterNameInCard} filterHouse={filterHouse} setFilterHouse={setFilterHouse} />
 
-    {filteredCharacters.length === 0 ? (<p>¿Seguro que querías buscar {filterNameInCard}? ¿No estará en otra casa?</p>) : <CharacterList characters={filteredCharacters} />
-    }
-    </>
+        {filteredCharacters.length === 0 ? (<p>¿Seguro que querías buscar {filterNameInCard}? ¿No estará en otra casa?</p>) : <CharacterList characters={filteredCharacters} />
+        }
+        </>
+      }
+    />
+
+    <Route
+      path="/detail/:id" 
+      element={<CharacterDetails characters={characters}/>} />
+  </Routes>
     )
 }
 
