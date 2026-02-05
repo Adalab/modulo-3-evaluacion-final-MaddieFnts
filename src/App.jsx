@@ -35,7 +35,9 @@ const filteredCharacters = filteredByName.filter((character) => {
   return (
     <>
     <Filters filterNameInCard={filterNameInCard} setFilterNameInCard={setFilterNameInCard} filterHouse={filterHouse} setFilterHouse={setFilterHouse} />
-    <CharacterList characters={filteredCharacters} />
+
+    {filteredCharacters.length === 0 ? (<p>¿Seguro que querías buscar {filterNameInCard}? ¿No estará en otra casa?</p>) : <CharacterList characters={filteredCharacters} />
+    }
     </>
     )
 }
