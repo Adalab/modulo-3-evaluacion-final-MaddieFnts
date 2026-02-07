@@ -1,13 +1,20 @@
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const CharacterDetails = ({ characters }) => {
+const CharacterDetails = ({ characters, resetFilters }) => {
     const { id } = useParams();
     const selectedCharacter = characters.find((character) => character.id === id)
     const placeholder = 'https://placehold.co/300x400?text=Harry+Potter';
 
-    if (!selectedCharacter) {
+    //Datos no cargados
+    if (characters.length === 0) {
         return <p>Cargando...</p>
+    }
+
+    //URL no válida
+    if (!selectedCharacter) {
+        return <p>El personaje que buscas se ha puesto la capa de invisibilidad y no damos con él.</p>
     }
 
     let speciesInSpanish = ""
@@ -67,9 +74,14 @@ const CharacterDetails = ({ characters }) => {
             <p>Otros nombres (en inglés): {otherNames}</p>
         </div>
 
-        <Link to="/">¡Travesura realizada!</Link>
+        <Link to="/" onClick={resetFilters}>¡Travesura realizada!</Link>
         </>
     )
 }
+
+CharacterDetails.propTypes = {
+    characters: PropTypes.array.isRequired,
+    resetFilters: PropTypes.func,
+};
 
 export default CharacterDetails

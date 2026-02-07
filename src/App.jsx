@@ -17,28 +17,22 @@ useEffect(() => {
   });
 }, []);
 
-const [filterNameInCard, setFilterNameInCard] = useState ("");
-const [filterHouse, setFilterHouse] = useState ("All");
 
-const filteredByName = characters.filter((character) =>
-  character.name
-    .toLocaleLowerCase()
-    .includes(filterNameInCard.toLocaleLowerCase())
+const [filterName, setfilterName] = useState ("");
+const [filterHouse, setFilterHouse] = useState ("Gryffindor");
+
+
+const filteredCharacters = characters.filter((character) => character.name
+.toLocaleLowerCase()
+.includes(filterName.toLocaleLowerCase()) && (filterHouse === "All" || character.house === filterHouse)
 );
+// .sort((a, b) => a.name.localeCompare(b.name))
 
-const filteredCharacters = filteredByName.filter((character) => {
-  if (filterHouse === "All") {
-    return true;
-  }
-
-  return character.house === filterHouse;
-})
-
-const allSpecies = characters.map((character) => character.species)
-console.log(allSpecies)
-
-const uniqueSpecies = [...new Set(allSpecies)]
-console.log("Especies únicas:", uniqueSpecies)
+//Resetear filtros al volver
+const resetFilters = () => {
+  setfilterName("");
+  setFilterHouse("Gryffindor");
+};
 
   return (
   <Routes>
@@ -46,9 +40,9 @@ console.log("Especies únicas:", uniqueSpecies)
       path="/"
       element={
         <>
-        <Filters filterNameInCard={filterNameInCard} setFilterNameInCard={setFilterNameInCard} filterHouse={filterHouse} setFilterHouse={setFilterHouse} />
+        <Filters filterName={filterName} setfilterName={setfilterName} filterHouse={filterHouse} setFilterHouse={setFilterHouse} />
 
-        {filteredCharacters.length === 0 ? (<p>¿Seguro que querías buscar {filterNameInCard}? ¿No estará en otra casa?</p>) : <CharacterList characters={filteredCharacters} />
+        {filteredCharacters.length === 0 ? (<p>¿Seguro que querías buscar "{filterName}"? ¿No estará en otra casa?</p>) : <CharacterList characters={filteredCharacters} />
         }
         </>
       }
@@ -56,7 +50,7 @@ console.log("Especies únicas:", uniqueSpecies)
 
     <Route
       path="/detail/:id" 
-      element={<CharacterDetails characters={characters}/>} />
+      element={<CharacterDetails characters={characters} resetFilters={resetFilters} />} />
   </Routes>
     )
 }
