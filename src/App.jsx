@@ -12,7 +12,10 @@ function App() {
 const [characters, setCharacters] = useState([]);
 const [filterName, setFilterName] = useState ("");
 const [filterHouse, setFilterHouse] = useState ("Gryffindor");
-const [darkMode, setdarkMode] = useState(false);
+const [darkMode, setDarkMode] = useState(false);
+const toggleDarkMode = () => {
+  setDarkMode(!darkMode);
+}
 
 useEffect(() => {
   getCharacters().then((data) => {
@@ -22,11 +25,7 @@ useEffect(() => {
 
 
 useEffect(() => {
-  if (darkMode) {
-    document.body.classList.add('dark-mode');
-  } else {
-    document.body.classList.remove('dark-mode');
-  }
+  document.body.classList.toggle('dark-mode', darkMode);
 }, [darkMode]);
 
 
@@ -49,19 +48,15 @@ return (
         element={
           <>
             <header className="page-header">
-              <img src="../public/images/header-fondo.png" alt="Buscador HP" className="page-header__logo" />
+              <img src="/images/header-fondo.png" alt="Buscador HP" className="page-header__logo" />
 
               <Filters filterName={filterName} setFilterName={setFilterName} filterHouse={filterHouse} setFilterHouse={setFilterHouse} />
 
-              <div className="theme-buttons">
-                <button 
-                  className="btn-lumos" 
-                  onClick={() => setdarkMode(false)}>¡Lumos!</button>
-
-                <button 
-                  className="btn-nox" 
-                  onClick={() => setdarkMode(true)}>¡Nox!</button>
+              <div className="theme-button">
+                <button className={darkMode ? "btn-nox" : "btn-lumos"} onClick={toggleDarkMode}>{darkMode ? "¡Lumos!" : "¡Nox!"}
+                </button>
               </div>
+
             </header>
 
             <main className={`page-main ${darkMode ? 'dark-mode' : ''}`}>

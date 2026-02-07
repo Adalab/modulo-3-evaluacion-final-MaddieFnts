@@ -55,17 +55,6 @@ body.dark-mode {
 
 
 .btn-lumos {
-  background: linear-gradient(135deg, #ffd700, #ffed4e);
-  color: #4d1f06;
-  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
-  
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
-  }
-}
-
-.btn-nox {
   background: linear-gradient(135deg, #2c2c54, #1a1a2e);
   color: #fff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
@@ -74,6 +63,17 @@ body.dark-mode {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
   }
+}
+
+.btn-nox {
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  color: #4d1f06;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+}
 }
 
 ///
