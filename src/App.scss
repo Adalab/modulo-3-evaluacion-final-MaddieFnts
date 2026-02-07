@@ -1,0 +1,202 @@
+#root {
+  max-width: 1320px;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  // padding: 2rem;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: rgb(155, 187, 241);
+  background-image: url(/images/des-mapa-dia.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: repeat;
+  transition: background 0.5s ease; 
+}
+
+body.dark-mode {
+  background: rgb(20, 20, 40);
+  background-image: url(/images/mapa-noche.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: repeat;
+}
+
+//BOTONES DE TEMA
+.theme-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.btn-lumos,
+.btn-nox {
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: 2px solid #d4af37;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.page-main {
+  margin: auto;
+  padding: 2rem 1rem 4rem;
+}
+
+
+.btn-lumos {
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  color: #4d1f06;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+  }
+}
+
+.btn-nox {
+  background: linear-gradient(135deg, #2c2c54, #1a1a2e);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+  }
+}
+
+///
+
+.page-header {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 2.5rem 1rem 3rem;
+}
+
+.page-header__logo {
+  max-width: 40rem;
+  width: 100%;
+  height: auto;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-name, .filter-house {
+  width: 15rem;
+  box-sizing: border-box;
+  padding: 0.5rem 1rem;
+  line-height: 1.2rem;
+  margin-bottom: 1rem;
+  border-radius:8px;
+  border: 2px solid transparent;
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  
+  &:focus {
+  border-color: #d4af37;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+  }
+}
+
+
+.character-list {
+  display: grid;
+  grid-template-columns: repeat(3, 280px);
+  justify-content: center;
+  gap: 4rem 8rem;
+  list-style: none;
+  padding: 0;
+  margin: 2rem 1rem;
+  max-width: 100%;
+}
+
+.character-list li {
+  list-style: none;
+  overflow: visible;
+}
+
+.character-card {
+  position: relative;
+  width: 100%;
+  padding-top: 115%;
+  overflow: visible;
+}
+
+.character-card__window {
+  position: absolute;
+  top: 15%;
+  left: 22%;
+  width: 64%;
+  height: 60%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.character-card__photo {
+  width: 90%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+.character-card__frame {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  right: -10%;
+  bottom: -10%;
+  transform: translateY(-9%);
+  background-image: url(/images/card-front.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 2;
+  pointer-events: none;
+  transition: filter 0.3s ease;
+}
+
+.character-card:hover .character-card__frame {
+  filter:
+    drop-shadow(0 0 8px rgba(212, 175, 55, 0.7))
+    drop-shadow(0 0 16px rgba(212, 175, 55, 0.5))
+    brightness(1.2);
+}
+
+.character-card h2 {
+  position: absolute;
+  bottom: -3%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: center;
+  z-index: 3;
+  text-align: center;
+  color: rgb(77, 31, 6);
+  font-size: 1.5rem;
+  text-shadow: 
+ -1px -1px 0 #fff,  
+  1px -1px 0 #fff,
+ -1px  1px 0 #fff,
+  1px  1px 0 #fff;
+}
+
+

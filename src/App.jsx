@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './App.css';
+import './App.scss';
 import { useEffect } from 'react';
 import getCharacters from './services/api';
 import CharacterList from './components/CharacterList';
@@ -10,6 +10,9 @@ import CharacterDetails from './components/CharacterDetails';
 
 function App() {
 const [characters, setCharacters] = useState([]);
+const [filterName, setFilterName] = useState ("");
+const [filterHouse, setFilterHouse] = useState ("Gryffindor");
+const [darkMode, setdarkMode] = useState(false);
 
 useEffect(() => {
   getCharacters().then((data) => {
@@ -18,8 +21,13 @@ useEffect(() => {
 }, []);
 
 
-const [filterName, setfilterName] = useState ("");
-const [filterHouse, setFilterHouse] = useState ("Gryffindor");
+useEffect(() => {
+  if (darkMode) {
+    document.body.classList.add('dark-mode');
+  } else {
+    document.body.classList.remove('dark-mode');
+  }
+}, [darkMode]);
 
 
 const filteredCharacters = characters.filter((character) => character.name
@@ -30,29 +38,49 @@ const filteredCharacters = characters.filter((character) => character.name
 
 //Resetear filtros al volver
 const resetFilters = () => {
-  setfilterName("");
+  setFilterName("");
   setFilterHouse("Gryffindor");
 };
 
-  return (
-  <Routes>
-    <Route
-      path="/"
-      element={
-        <>
-        <Filters filterName={filterName} setfilterName={setfilterName} filterHouse={filterHouse} setFilterHouse={setFilterHouse} />
+return (
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <>
+            <header className="page-header">
+              <img src="../public/images/header-fondo.png" alt="Buscador HP" className="page-header__logo" />
 
-        {filteredCharacters.length === 0 ? (<p>¿Seguro que querías buscar "{filterName}"? ¿No estará en otra casa?</p>) : <CharacterList characters={filteredCharacters} />
+              <Filters filterName={filterName} setFilterName={setFilterName} filterHouse={filterHouse} setFilterHouse={setFilterHouse} />
+
+              <div className="theme-buttons">
+                <button 
+                  className="btn-lumos" 
+                  onClick={() => setdarkMode(false)}>¡Lumos!</button>
+
+                <button 
+                  className="btn-nox" 
+                  onClick={() => setdarkMode(true)}>¡Nox!</button>
+              </div>
+            </header>
+
+            <main className={`page-main ${darkMode ? 'dark-mode' : ''}`}>
+              {filteredCharacters.length === 0 ? (
+                <p>¿Seguro que querías buscar "{filterName}"? ¿No estará en otra casa?</p>
+              ) : (
+                <CharacterList characters={filteredCharacters} />
+              )}
+            </main>
+          </>
         }
-        </>
-      }
-    />
+      />
 
-    <Route
-      path="/detail/:id" 
-      element={<CharacterDetails characters={characters} resetFilters={resetFilters} />} />
-  </Routes>
-    )
-}
+      <Route
+        path="/detail/:id" 
+        element={<CharacterDetails characters={characters} resetFilters={resetFilters} />} 
+      />
+    </Routes>
+  );
+} 
 
 export default App

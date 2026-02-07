@@ -1,14 +1,14 @@
 import PropTypes from "prop-types";
 
-const Filters = ({filterName, setfilterName, filterHouse, setFilterHouse}) => {
+const Filters = ({filterName, setFilterName, filterHouse, setFilterHouse}) => {
 return (
 <>
-    <form onSubmit={(e) => e.preventDefault()}>
-    <input type="text" placeholder="Busca un personaje" value={filterName} onChange={(e) => setfilterName(e.target.value)} />
+    <form className="filters" onSubmit={(e) => e.preventDefault()}>
+    <input className="filter-name" type="text" placeholder="Busca un personaje" value={filterName} onChange={(e) => setFilterName(e.target.value)} />
 
-    <select value={filterHouse} onChange={(e) => {
+    <select className="filter-house" value={filterHouse} onChange={(e) => {
         setFilterHouse(e.target.value) 
-        setfilterName("")}}>
+        setFilterName("")}}>
         <option value="All">Todo</option>
         <option value="Gryffindor">Gryffindor</option>
         <option value="Hufflepuff">Hufflepuff</option>
@@ -21,9 +21,9 @@ return (
 )
 }
 
-Filters.PropTypes = {
+Filters.propTypes = {
     filterName: PropTypes.string.isRequired,
-    setfilterName: PropTypes.func.isRequired,
+    setFilterName: PropTypes.func.isRequired,
     filterHouse: PropTypes.string.isRequired,
     setFilterHouse: PropTypes.func.isRequired,
 };
