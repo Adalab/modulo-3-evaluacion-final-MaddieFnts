@@ -15,68 +15,36 @@ body {
   overflow-x: hidden;
   background: rgb(155, 187, 241);
   background-image: url(/images/des-mapa-dia.png);
-  background-size: contain;
-  background-position: center;
-  background-repeat: repeat;
-  transition: background 0.5s ease; 
+  background-size: 100% auto;
+  background-position: center top;
+  background-repeat: repeat-y;
+  transition: background 0.5s ease;
 }
 
 body.dark-mode {
   background: rgb(20, 20, 40);
   background-image: url(/images/mapa-noche.png);
-  background-size: contain;
-  background-position: center;
-  background-repeat: repeat;
+  background-size: 100% auto;
+  background-position: center top;
+  background-repeat: repeat-y;
+  transition: background 0.5s ease;
 }
 
-//BOTONES DE TEMA
-.theme-buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 1rem;
-}
-
-.btn-lumos,
-.btn-nox {
-  padding: 0.8rem 2rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border: 2px solid #d4af37;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
+//HEADER
 .page-main {
   margin: auto;
   padding: 2rem 1rem 4rem;
 }
 
-
-.btn-lumos {
-  background: linear-gradient(135deg, #2c2c54, #1a1a2e);
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-  
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
-  }
+.page-main p {
+  font-size: large;
+  font-weight: bold;
+  text-shadow:
+    -1px -1px 0 #fff,
+     1px -1px 0 #fff,
+    -1px  1px 0 #fff,
+     1px  1px 0 #fff;
 }
-
-.btn-nox {
-  background: linear-gradient(135deg, #ffd700, #ffed4e);
-  color: #4d1f06;
-  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
-  
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
-}
-}
-
-///
 
 .page-header {
   display: grid;
@@ -93,29 +61,97 @@ body.dark-mode {
   height: auto;
 }
 
+//FILTROS
 .filters {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
-.filter-name, .filter-house {
-  width: 15rem;
-  box-sizing: border-box;
-  padding: 0.5rem 1rem;
-  line-height: 1.2rem;
-  margin-bottom: 1rem;
-  border-radius:8px;
-  border: 2px solid transparent;
-  outline: none;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
-  
-  &:focus {
-  border-color: #d4af37;
-  box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
-  }
-}
+    .filter-name, .filter-house {
+      width: 15rem;
+      font-weight: bold;
+      box-sizing: border-box;
+      padding: 0.5rem 1rem;
+      line-height: 1.2rem;
+      margin-bottom: 1rem;
+      border-radius:8px;
+      border: 2px solid transparent;
+      outline: none;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
 
+      &:focus {
+      border-color: #d4af37;
+      box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+      }
+    }
 
+    .btn-reset {
+      font-size: 0.95rem;
+      font-weight: bold;
+      padding: 0.5rem 1.6rem;
+      border-radius: 6px;
+      border: 2px solid #d4af37;
+      background: linear-gradient(135deg, #ffd700, #ffed4e);
+      color: black;
+      outline: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+          
+      &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+      }
+    }
+
+      //BOTONES DE TEMA
+      .theme-button {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 1rem;
+      }
+
+      .btn-lumos,
+      .btn-nox {
+        min-width: 9rem;
+        padding: 0.8rem 2rem;
+        justify-content: center;
+        font-size: 1.1rem;
+        font-weight: bold;
+        border: 2px solid #d4af37;
+        border-radius: 8px;
+        cursor: pointer;
+        transition:
+          color 0.5s ease,
+          box-shadow 0.5s ease,
+      }
+
+      .btn-lumos {
+        background: linear-gradient(135deg, #2c2c54, #1a1a2e);
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+        }
+      }
+
+      .btn-nox {
+        background: linear-gradient(135deg, #ffd700, #ffed4e);
+        color: #4d1f06;
+        box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+      }
+      }
+
+///
+
+//LISTA
 .character-list {
   display: grid;
   grid-template-columns: repeat(3, 280px);
@@ -132,6 +168,7 @@ body.dark-mode {
   overflow: visible;
 }
 
+//CARD
 .character-card {
   position: relative;
   width: 100%;
@@ -192,11 +229,104 @@ body.dark-mode {
   text-align: center;
   color: rgb(77, 31, 6);
   font-size: 1.5rem;
-  text-shadow: 
- -1px -1px 0 #fff,  
-  1px -1px 0 #fff,
- -1px  1px 0 #fff,
-  1px  1px 0 #fff;
+  text-shadow:
+    -1px -1px 0 #fff,
+     1px -1px 0 #fff,
+    -1px  1px 0 #fff,
+     1px  1px 0 #fff;
 }
 
+//DETALLES
+.character-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 2.5rem;
 
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 2rem;
+
+  background: #fff;
+  border-radius: 9px;
+
+  border: 2px solid #d4af37;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+}
+
+.character-image {
+  flex: 0 0 260px;
+}
+
+.character-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.content-info {
+  flex: 1;
+  line-height: 1.6;
+  font-size: large;
+}
+
+.name {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+.content-info p {
+  margin-bottom: 0.6rem;
+}
+
+.other-names {
+  max-width: 40ch;
+  word-wrap: break-word
+}
+
+.hogwarts {
+  flex: 0 0 280px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  align-self: center;
+}
+
+.hogwarts img {
+  width: 100%;
+  height: auto;
+  opacity: 0.9;
+}
+
+//BOTÓN VOLVER
+.character-btn {
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0;
+}
+
+.btn-mischief {
+  padding: 0.9rem 2.2rem;
+  background-color: #6b1d1d;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+  outline: none;
+  border-radius: 10px;
+  border: 2px solid #4e1414;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+
+  &:hover {
+  background-color: #8a2626;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  transition:
+    background-color 0.25s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}

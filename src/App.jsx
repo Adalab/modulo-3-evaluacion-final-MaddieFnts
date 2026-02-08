@@ -13,6 +13,7 @@ const [characters, setCharacters] = useState([]);
 const [filterName, setFilterName] = useState ("");
 const [filterHouse, setFilterHouse] = useState ("Gryffindor");
 const [darkMode, setDarkMode] = useState(false);
+
 const toggleDarkMode = () => {
   setDarkMode(!darkMode);
 }
@@ -35,7 +36,7 @@ const filteredCharacters = characters.filter((character) => character.name
 );
 // .sort((a, b) => a.name.localeCompare(b.name))
 
-//Resetear filtros al volver
+//Resetear filtros
 const resetFilters = () => {
   setFilterName("");
   setFilterHouse("Gryffindor");
@@ -50,7 +51,13 @@ return (
             <header className="page-header">
               <img src="/images/header-fondo.png" alt="Buscador HP" className="page-header__logo" />
 
+              <div className='filters-container'>
               <Filters filterName={filterName} setFilterName={setFilterName} filterHouse={filterHouse} setFilterHouse={setFilterHouse} />
+
+              <button onClick={resetFilters} className="btn-reset">
+              Borrar
+              </button>
+              </div>
 
               <div className="theme-button">
                 <button className={darkMode ? "btn-nox" : "btn-lumos"} onClick={toggleDarkMode}>{darkMode ? "¡Lumos!" : "¡Nox!"}
@@ -72,7 +79,7 @@ return (
 
       <Route
         path="/detail/:id" 
-        element={<CharacterDetails characters={characters} resetFilters={resetFilters} />} 
+        element={<CharacterDetails characters={characters} />} 
       />
     </Routes>
   );
