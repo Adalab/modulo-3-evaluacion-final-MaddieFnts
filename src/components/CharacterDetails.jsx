@@ -2,19 +2,19 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const CharacterDetails = ({ characters, resetFilters }) => {
+const CharacterDetails = ({ characters }) => { //Recibir la prop characters que enviamos en app
     const { id } = useParams();
-    const selectedCharacter = characters.find((character) => character.id === id)
+    const selectedCharacter = characters.find((character) => character.id === id) //Recorrer characters para comparar el id de la url
     const placeholder = 'https://placehold.co/300x400?text=Harry+Potter';
 
     //Datos no cargados
     if (characters.length === 0) {
-        return <p>Cargando...</p>
+        return <p className="error-text">Cargando...</p>
     }
 
     //URL no válida
     if (!selectedCharacter) {
-        return <p>El personaje que buscas se ha puesto la capa de invisibilidad y no damos con él.</p>
+        return <p className="error-text">El personaje que buscas se ha puesto la capa de invisibilidad y no damos con él.</p>
     }
 
     let speciesInSpanish = ""
@@ -102,7 +102,7 @@ const CharacterDetails = ({ characters, resetFilters }) => {
         </section>
 
         <section className="character-btn">
-            <Link to="/" onClick={resetFilters} className="btn-mischief">¡Travesura realizada!</Link>
+            <Link to="/" className="btn-mischief">¡Travesura realizada!</Link>
         </section>
         </>
     )
