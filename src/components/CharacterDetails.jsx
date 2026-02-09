@@ -17,7 +17,7 @@ const CharacterDetails = ({ characters }) => { //Recibir la prop characters que 
         return <p className="error-text">El personaje que buscas se ha puesto la capa de invisibilidad y no damos con él.</p>
     }
 
-    let speciesInSpanish = ""
+    let speciesInSpanish = "";
     switch (selectedCharacter.species) {
         case "human":
             speciesInSpanish = "Humana/o"
@@ -30,10 +30,10 @@ const CharacterDetails = ({ characters }) => { //Recibir la prop characters que 
             break
         case "ghost":
             speciesInSpanish = "Fantasma"
-            break
+            break;
         case "owl":
             speciesInSpanish = "Lechuza"
-            break
+            break;
         case "house-elf":
             speciesInSpanish = "Elfa/o doméstica/o"
             break
@@ -41,14 +41,14 @@ const CharacterDetails = ({ characters }) => { //Recibir la prop characters que 
         speciesInSpanish = selectedCharacter.species
     }
 
-    let genderInSpanish = ""
+    let genderInSpanish = "";
     switch (selectedCharacter.gender) {
         case "male":
             genderInSpanish = "Masculino"
-            break
+            break;
         case "female":
             genderInSpanish = "Femenino"
-            break
+            break;
         default:
             genderInSpanish = selectedCharacter.gender
     }
@@ -65,16 +65,16 @@ const CharacterDetails = ({ characters }) => { //Recibir la prop characters que 
     switch (selectedCharacter.house) {
         case "Gryffindor":
             houseCrest = "Gryffindor 🦁"
-            break
+            break;
         case "Slytherin":
             houseCrest = "Slytherin 🐍"
-            break
+            break;
         case "Hufflepuff":
             houseCrest = "Hufflepuff 🦡"
-            break
+            break;
         case "Ravenclaw":
             houseCrest = "Ravenclaw 🦅"
-            break
+            break;
         default:
             houseCrest = "Desconocida o no tiene ❌"
     }
@@ -110,7 +110,6 @@ const CharacterDetails = ({ characters }) => { //Recibir la prop characters que 
 
 CharacterDetails.propTypes = {
     characters: PropTypes.array.isRequired,
-    resetFilters: PropTypes.func,
 };
 
-export default CharacterDetails
+export default CharacterDetails;

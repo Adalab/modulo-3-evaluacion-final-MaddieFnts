@@ -27,7 +27,7 @@ useEffect(() => {
 //MODO NOCHE
 const toggleDarkMode = () => { 
   setDarkMode(!darkMode);
-}
+};
 
 useEffect(() => {
   document.body.classList.toggle('dark-mode', darkMode);
@@ -75,29 +75,25 @@ return (
         element={
           <>
             <header className="page-header">
+
               <img src="/images/header-fondo.png" alt="Buscador HP" className="page-header__logo" />
 
               <div className='filters-container'>
+                <Filters filterName={filterName} setFilterName={setFilterName} filterHouse={filterHouse} setFilterHouse={setFilterHouse} sortOrder={sortOrder} setSortOrder={setSortOrder} setCardsToShow={setCardsToShow} />
 
-              <Filters filterName={filterName} setFilterName={setFilterName} filterHouse={filterHouse} setFilterHouse={setFilterHouse} sortOrder={sortOrder} setSortOrder={setSortOrder} setCardsToShow={setCardsToShow} />
-
-              <button onClick={resetFilters} className="btn-reset">
-              Borrar
-              </button>
-
+                <button onClick={resetFilters} className="btn-reset">Borrar</button>
               </div>
 
               <div className="theme-button">
-                <button className={darkMode ? "btn-lumos" : "btn-nox"} onClick={toggleDarkMode}>
-                  {darkMode ? "¡Lumos!" : "¡Nox!"}
-                </button>
+                <button className={darkMode ? "btn-lumos" : "btn-nox"} onClick={toggleDarkMode}>{darkMode ? "¡Lumos!" : "¡Nox!"}</button>
               </div>
 
             </header>
 
             <main className="page-main">
-              {sortedCharacters.length === 0 ? (
-                <p>¿Seguro que querías buscar "{filterName}"? ¿No estará en otra casa?</p>) : 
+
+              {sortedCharacters.length === 0 ? 
+              (<p>¿Seguro que querías buscar "{filterName}"? ¿No estará en otra casa?</p>) : 
                 (
                 <>
                   <CharacterList characters={visibleCards} />
@@ -108,7 +104,8 @@ return (
                   {cardsToShow > 6 && 
                   (<button className="btn-load-more" onClick={() => setCardsToShow(6)}>Menos</button>)}
                 </>
-              )}
+              )};
+
             </main>
           </>
         }
